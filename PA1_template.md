@@ -13,17 +13,6 @@ First I will load the relevant libraries needed.
     library(ggplot2)
     library(dplyr)
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
 1. Loading the dataset
 ----------------------
 
@@ -49,13 +38,16 @@ interested in the following questions:
     data_sum <- with(data, aggregate(steps, by = list(date), FUN = sum, na.rm = TRUE))
     names(data_sum) <- c("Date", "Total_steps")
 
-    # Next we can plot this and obtain summary statistics
+Let us produce a plot for this..
+
     ggplot(data_sum, aes(x = Total_steps)) +
         geom_histogram(binwidth = 500, 
                        color = "black", fill = "blue", alpha = .2) +
         labs(x = "Total steps each day", y = "Frequency")
 
-![](PA1_template_files/figure-markdown_strict/sum%20stats-1.png)
+![](PA1_template_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+
+Finally we compute some summary statistics.
 
     mean(data_sum$Total_steps)
 
